@@ -10,9 +10,7 @@ import {
   Bar,
 } from "recharts";
 
-// import data from "./mock-sessions.json";
-
-const RED = "#E60000";
+import { Colors } from "../shared/colors";
 
 const labelsMap = new Map();
 
@@ -95,7 +93,7 @@ function Activity(props) {
         <Bar
           dataKey="kilogram"
           name="Poids (kg)"
-          fill="#282D30"
+          fill={Colors.DARK}
           barSize={7}
           radius={[7, 7, 0, 0]}
           legendType="circle"
@@ -103,7 +101,7 @@ function Activity(props) {
         <Bar
           dataKey="calories"
           name="Calories brûlées (kCal)"
-          fill="#E60000"
+          fill={Colors.RED}
           barSize={7}
           radius={[7, 7, 0, 0]}
           legendType="circle"
