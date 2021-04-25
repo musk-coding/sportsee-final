@@ -7,3 +7,7 @@ export const getUser = (userId) => {
 export const getActivityByUser = (userId) => {
   return axios.get(`http://localhost:3000/user/${userId}/activity`);
 };
+
+export const getPerformanceByUser = (userId) => {
+  return axios.get(`http://localhost:3000/user/${userId}/performance`);
+};

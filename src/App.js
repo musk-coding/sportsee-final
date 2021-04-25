@@ -1,9 +1,16 @@
 import { useState, useEffect } from "react";
-import { getUser, getActivityByUser } from "./services/user.service";
+import {
+  getUser,
+  getActivityByUser,
+  getPerformanceByUser,
+} from "./services/user.service";
+import { getAdaptedRadarData } from "./utils/adapter";
 import Greeting from "./components/Greeting";
 import Feedback from "./components/Feedback";
+import Performance from "./components/Performance";
 import "./App.css";
 import Activity from "./components/Activity";
+import { ResponsiveContainer } from "recharts";
 
 const USERS_IDS = [12, 18];
 
@@ -12,6 +19,7 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [user, setUser] = useState(null);
   const [userActivity, setUserActivity] = useState(null);
+  const [userPerformance, setUserPerformance] = useState(null);
 
   const [userId, setUserId] = useState(
     USERS_IDS[Math.floor(Math.random() * USERS_IDS.length)]
@@ -21,9 +29,13 @@ function App() {
     async function fetchData() {
       const user = (await getUser(userId)).data;
       const userActivity = (await getActivityByUser(userId)).data.data.sessions;
-      // console.log(user);
+
+      const rawPerformanceData = (await getPerformanceByUser(userId)).data;
+      const userPerformance = getAdaptedRadarData(rawPerformanceData);
+
       setUser(user);
       setUserActivity(userActivity);
+      setUserPerformance(userPerformance);
       setIsLoaded(true);
     }
 
@@ -89,7 +101,9 @@ function App() {
             </div>
             <div className="data-group">
               <div className="average-session"></div>
-              <div className="stats"></div>
+              <div className="stats">
+                <Performance data={userPerformance} />
+              </div>
               <div className="score"></div>
             </div>
           </div>
