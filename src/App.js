@@ -10,7 +10,6 @@ import Feedback from "./components/Feedback";
 import Performance from "./components/Performance";
 import "./App.css";
 import Activity from "./components/Activity";
-import { ResponsiveContainer } from "recharts";
 
 const USERS_IDS = [12, 18];
 
