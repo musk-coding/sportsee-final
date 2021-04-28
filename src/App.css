@@ -161,7 +161,7 @@ nav li {
 }
 
 .average-session {
-  border: 1px solid #000;
+  /* border: 1px solid #000; */
   width: 258px;
   height: 100%;
 }
@@ -172,7 +172,7 @@ nav li {
 }
 
 .score {
-  border: 1px solid #000;
+  /* border: 1px solid #000; */
   width: 258px;
   height: 100%;
 }
